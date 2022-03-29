@@ -129,7 +129,7 @@ function Stats() {
         <StatCircle
           data={confData}
           title="Average Confirmation"
-          value={avgConfTime ? avgConfTime.toFixed(2) + "s" : "---"}
+          value={avgConfTime ? avgConfTime.toFixed(2) + " seconds" : "---"}
         />
         <StatCircle
           data={txData}

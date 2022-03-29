@@ -29,7 +29,7 @@ export class HomePage extends React.Component {
               <p className="introduction">
                 To see just how fast it is, you're invited to come and Break
                 Solana. During the next fifteen seconds, send as many
-                transactions as you can by mashing your keyboard.
+                transactions as you can by typing as fast as possible on your keyboard.
               </p>
             </div>
             <div className="col-12">

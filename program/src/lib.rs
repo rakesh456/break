@@ -1,5 +1,5 @@
 use solana_program::{
-    account_info::AccountInfo, entrypoint, entrypoint::ProgramResult, pubkey::Pubkey,
+    account_info::AccountInfo, entrypoint, entrypoint::ProgramResult, pubkey::Pubkey, msg
 };
 
 entrypoint!(process_instruction);
@@ -8,14 +8,23 @@ fn process_instruction<'a>(
     accounts: &'a [AccountInfo<'a>],
     instruction_data: &[u8],
 ) -> ProgramResult {
+    
+    msg!("Line 12: Input parameters: \n_program_id = {:?}\naccounts = {:?}\ninstruction_data = {:?}",
+            _program_id, accounts, instruction_data);
+
     // Assume a writable account is at index 0
     let mut account_data = accounts[0].try_borrow_mut_data()?;
+    msg!("\nLine 14:\naccount_data = {:?}\n", account_data);
 
     // xor with the account data using byte and bit from ix data
     let index = u16::from_be_bytes([instruction_data[0], instruction_data[1]]);
+    msg!("\nLine 18:\nindex = {:?}\n", index);
     let byte = index >> 3;
+    msg!("\nLine 20:\nbyte = {:?}\n", byte);
     let bit = (index & 0x7) as u8;
+    msg!("\nLine 22:\nbit = {:?}\n", bit);
     account_data[byte as usize] ^= 1 << (7 - bit);
+    msg!("\nLine 24:\naccount_data = {:?}\n", account_data);
 
     Ok(())
 }
